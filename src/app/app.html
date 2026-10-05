@@ -1,5 +1,5 @@
 <svg width= "0" height= "0" style= "position:absolute" aria-hidden= "true">
-  <symbol id= "folder" viewBox= "0 0 22 16>"><path d="M0 2h812 2h12v112H0Z" fill=#ffd83d"/></symbol>
+  <symbol id= "folder" viewBox= "0 0 22 16"><path d="M0 2h812 2h12v12H0z" fill=#ffd83d"/></symbol>
 </svg>
 
 <main class="frame">
@@ -20,7 +20,7 @@
             <span class="arrow">&#9660;</span>
             <svg class="icon"><use href="#folder"/></svg>JOAO-PORTFOLIO
         </div>
-      </div class="children">
+      <div class="children">
 
 
       <div class="folder" [class.collapsed]="isCollapsed('src')">
@@ -82,7 +82,7 @@
                   <span>const</span> developer = &#123;<br>
                   &nbsp;&nbsp;name: <b>"Joao"</b>;<br>
                   &nbsp;&nbsp;goal: <b>"build"</b>;<br>
-                  &#125
+                  &#125;
                 </div>
               </div>
               <div class= "desk"></div>
@@ -101,6 +101,7 @@
             </article>
             <article class="card">
               <h2><span>Mi stack</span></h2>
+              <div class="skills">
               <span class="tag">HTML</span>
               <span class="tag">CSS</span>
               <span class="tag">Typescript</span>
@@ -124,20 +125,16 @@
                   <span class="tag">Firebase</span>
                 </article>
                 <article class="project">
-                  <div class="project-grid">
-                <article class="project">
-                  <span class="project-number">01</span>
-                  <h3>App de tareas</h3>
+                  <span class="project-number">02</span>
+                  <h3>Sitio para negocio</h3>
                   <p>Gestion de tareas con autenticacion y datos en tiempo real.</p>
-                  <span class="tag">Firebase</span>
+                  <span class="tag">HTML/CSS/JS</span>
                   </article>
                 <article class="project">
-                  <div class="project-grid">
-                <article class="project">
-                  <span class="project-number">01</span>
-                  <h3>App de tareas</h3>
-                  <p>Gestion de tareas con autenticacion y datos en tiempo real.</p>
-                  <span class="tag">Firebase</span>
+                  <span class="project-number">03</span>
+                  <h3>Sistema de inventario</h3>
+                  <p>Panel para controlar productos, exitencias y ventas.</p>
+                  <span class="tag">PHP + SQL</span>
                 </article>
               </div>
             </div>
@@ -145,6 +142,17 @@
         }
         
         @case ('contact'){
+          <section class="projects">
+            <div class="contact">
+              <strong>!HABLEMOS</strong>
+              <a href="mailto.email.com"> Email</a>
+              <a href="#">GitHub</a>
+              <a href="#">in LinkedIn"</a>
+            </div>
+          </section>
+        }
+
+        @default {
           <div class="empty">Abre un archivo desde el explorer</div>
         }
       }
