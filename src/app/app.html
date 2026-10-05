@@ -1,11 +1,160 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My_Portfolio</title>
-</head>
-<body>
-  
-</body>
-</html>
+<svg width= "0" height= "0" style= "position:absolute" aria-hidden= "true">
+  <symbol id= "folder" viewBox= "0 0 22 16>"><path d="M0 2h812 2h12v112H0Z" fill=#ffd83d"/></symbol>
+</svg>
+
+<main class="frame">
+
+  <header class="titlebar">
+    <div class="traffic"><span></span><span></span><span></span></div>
+    <div class="title">Joao-Dominguez</div>
+  </header>
+
+  <section class="workspace">
+
+    <aside class="explorer">
+      <div class="panel-title">EXPLORER</div>
+
+      <div class="tree">
+        <div class="folder" [class.collapsed]="isCollapsed('root')">
+          <div class= "row" (click)="toggle('root')">
+            <span class="arrow">&#9660;</span>
+            <svg class="icon"><use href="#folder"/></svg>JOAO-PORTFOLIO
+        </div>
+      </div class="children">
+
+
+      <div class="folder" [class.collapsed]="isCollapsed('src')">
+        <div class="row" (click)="toggle('src')">
+          <span class="arrow">&#9660;</span>
+          <svg class="icon"><use href="#folder"/></svg>src
+      </div>
+      <div class="children">
+
+         <div class="folder" [class.collapsed]="isCollapsed('components')">
+        <div class="row" (click)="toggle('components')">
+          <span class="arrow">&#9660;</span>
+          <svg class="icon"><use href="#folder"/></svg>Components
+      </div>
+      <div class="children">
+        <div class="row file" [class.active]="activeTab() === 'home'" (click)="open('home')">
+          <span class="code">&lt;/&gt;</span>Home.jada
+        </div>
+        <div class="row file" [class.active]="activeTab() === 'projects'" (click)="open('projects')">
+          <span class="code">&lt;/&gt;</span>Projects.jada
+          <div class="row file" [class.activeTab]="activeTab() === 'contact'" (click)="open('contact')">
+            <span class="code">&lt;/&gt;</span>Contact.jada
+            </div>
+           </div>
+          </div>
+          
+         </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</aside>
+
+<nav class="tabs">
+  @for (id of openTabs(); track id) {
+    <div class="tab" [class.active]="activeTab() ===id" (click)="open(id)">
+      <span class="code">&lt;/&gt;</span>{{names[id]}}
+      <button class="tab-close" (click)="close(id); $event.stopPropagation()" [attr.aria-label]="'Cerrar' + names[id]">&times;</button>
+      </div>
+    }
+  </nav>
+
+    <div class="content">
+      @switch (activeTab()) {
+        @case ('home') {
+          <article class="hero">
+            <div class="hero-copy">
+              <span class="badge">PORTFOLIO / 2026</span>
+              <h1>JOAO</h1>
+              <div class="role">FULL STACK DEVELOPER</div>
+              <p>Convierto ideas en productos digitales funcionales, claros y con personalidad.</p>
+
+            </div>
+            <div class="hero-art">
+              <div class="person"></div>
+              <div class="monitor">
+                <div class="screen">
+                  <span>const</span> developer = &#123;<br>
+                  &nbsp;&nbsp;name: <b>"Joao"</b>;<br>
+                  &nbsp;&nbsp;goal: <b>"build"</b>;<br>
+                  &#125
+                </div>
+              </div>
+              <div class= "desk"></div>
+            </div>
+          </article>
+
+          <div class="comic-row">
+            <article class="card">
+              <h2><span>sobre mi</span></h2>
+              <p>Soy Joao, desarrollador en formacicon apsionado por la programacion y el diseno</p>
+              <div class="skills">
+                <span class="tag">Creatividad</span>
+                <span class="tag">Codigo</span>
+                <span class="tag">UI/UX</span>  
+              </div>
+            </article>
+            <article class="card">
+              <h2><span>Mi stack</span></h2>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">Typescript</span>
+              <span class="tag">Angular</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">Firebase</span>
+              </div>
+            </article>
+          </div>
+        }
+
+        @case ('projects') {
+          <section class="projects">
+            <div class="card">
+              <h2><span>Proyectos</span></h2>
+              <div class="project-grid">
+                <article class="project">
+                  <span class="project-number">01</span>
+                  <h3>App de tareas</h3>
+                  <p>Gestion de tareas con autenticacion y datos en tiempo real.</p>
+                  <span class="tag">Firebase</span>
+                </article>
+                <article class="project">
+                  <div class="project-grid">
+                <article class="project">
+                  <span class="project-number">01</span>
+                  <h3>App de tareas</h3>
+                  <p>Gestion de tareas con autenticacion y datos en tiempo real.</p>
+                  <span class="tag">Firebase</span>
+                  </article>
+                <article class="project">
+                  <div class="project-grid">
+                <article class="project">
+                  <span class="project-number">01</span>
+                  <h3>App de tareas</h3>
+                  <p>Gestion de tareas con autenticacion y datos en tiempo real.</p>
+                  <span class="tag">Firebase</span>
+                </article>
+              </div>
+            </div>
+          </section>
+        }
+        
+        @case ('contact'){
+          <div class="empty">Abre un archivo desde el explorer</div>
+        }
+      }
+    </div>
+
+    </section>
+  </section>
+
+  <footer class="statusbar">
+    <span>main &nbsp; 0 errores</span>
+    <span>Ln 1, Col 1 &nbsp; UTF-8 &nbsp; JADA</span>
+  </footer>
+</main>
