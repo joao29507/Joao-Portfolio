@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+* { box-sizing: border-box; }
+
+:root {
+  --ink: #171717;
+  --bg: #f4e8c8;
+  --paper: #fff4d6;
+  --blue: #1677ff;
+  --cyan: #22c7ff;
+  --yellow: #ffd83d;
+  --title: #0b111a;
+  --panel: #101722;
+  --explorer: #111a27;
+  --editor: #0d141e;
+  --line: #28384d;
+  --muted: #8fa0b7;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(var(--ink) 1px, transparent 1px) 0 0 / 18px 18px,
+    var(--bg);
+  font-family: "Trebuchet MS", Arial, sans-serif;
+}
