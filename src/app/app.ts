@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { afterNextRender, Component, DestroyRef, inject, signal } from '@angular/core';
 
 type FileId = 'home' | 'projects' | 'contact';
 
@@ -17,9 +17,17 @@ export class App {
   openTabs = signal<FileId[]>([]);
   activeTab = signal<FileId | null>(null);
   collapsed = signal<string[]>([]);
+  readonly isLoading = signal(true);
+
+  private readonly destroyRef = inject(DestroyRef);
 
   constructor() {
     this.open('home');
+
+    afterNextRender(() => {
+      const timeoutId = setTimeout(() => this.isLoading.set(false), 1600);
+      this.destroyRef.onDestroy(() => clearTimeout(timeoutId));
+    });
   }
 
   open(id: FileId): void {
