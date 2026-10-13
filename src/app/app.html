@@ -6,17 +6,29 @@
     <header class="titlebar">
       <div class="traffic"><span></span><span></span><span></span></div>
       <div class="title">Joao-Dominguez</div>
+      <button
+        class="language-toggle"
+        type="button"
+        (click)="toggleLanguage()"
+        [attr.aria-label]="text.languageLabel"
+      >{{ text.languageButton }}</button>
+      <a
+        class="cv-download"
+        href="/CV_JADA.pdf"
+        download="CV_JADA.pdf"
+        [attr.aria-label]="text.cvDownloadLabel"
+      >{{ text.cvDownload }}</a>
     </header>
 
     <section class="workspace">
       <aside class="explorer">
-        <div class="panel-title">EXPLORER</div>
+        <div class="panel-title">{{ text.explorer }}</div>
 
         <div class="tree">
           <div class="folder" [class.collapsed]="isCollapsed('root')">
             <div class="row" (click)="toggle('root')">
               <span class="arrow">&#9660;</span>
-              <svg class="icon"><use href="#folder" /></svg>JOAO-PORTFOLIO
+              <svg class="icon"><use href="#folder" /></svg>{{ text.portfolioFolder }}
             </div>
             <div class="children">
               <div class="folder" [class.collapsed]="isCollapsed('src')">
@@ -28,17 +40,17 @@
                   <div class="folder" [class.collapsed]="isCollapsed('components')">
                     <div class="row" (click)="toggle('components')">
                       <span class="arrow">&#9660;</span>
-                      <svg class="icon"><use href="#folder" /></svg>Components
+                      <svg class="icon"><use href="#folder" /></svg>{{ text.components }}
                     </div>
                     <div class="children">
                       <div class="row file" [class.active]="activeTab() === 'home'" (click)="open('home')">
-                        <span class="code">&lt;/&gt;</span>Home.jada
+                        <span class="code">&lt;/&gt;</span>{{ names.home[language()] }}
                       </div>
                       <div class="row file" [class.active]="activeTab() === 'projects'" (click)="open('projects')">
-                        <span class="code">&lt;/&gt;</span>Projects.jada
+                        <span class="code">&lt;/&gt;</span>{{ names.projects[language()] }}
                       </div>
                       <div class="row file" [class.activeTab]="activeTab() === 'contact'" (click)="open('contact')">
-                        <span class="code">&lt;/&gt;</span>Contact.jada
+                        <span class="code">&lt;/&gt;</span>{{ names.contact[language()] }}
                       </div>
                     </div>
                   </div>
@@ -53,8 +65,8 @@
         <nav class="tabs">
           @for (id of openTabs(); track id) {
             <div class="tab" [class.active]="activeTab() === id" (click)="open(id)">
-              <span class="code">&lt;/&gt;</span>{{ names[id] }}
-              <button class="tab-close" (click)="close(id); $event.stopPropagation()" [attr.aria-label]="'Cerrar' + names[id]">&times;</button>
+              <span class="code">&lt;/&gt;</span>{{ names[id][language()] }}
+              <button class="tab-close" (click)="close(id); $event.stopPropagation()" [attr.aria-label]="(language() === 'es' ? 'Cerrar ' : 'Close ') + names[id][language()]">&times;</button>
             </div>
           }
         </nav>
@@ -64,18 +76,18 @@
             @case ('home') {
               <article class="hero">
                 <div class="hero-copy">
-                  <span class="badge">PORTFOLIO / 2026</span>
+                  <span class="badge">{{ text.portfolio }}</span>
                   <h1>JOAO</h1>
-                  <div class="role">FULL STACK DEVELOPER</div>
-                  <p>Convierto ideas en productos digitales funcionales, claros y con personalidad.</p>
+                  <div class="role">{{ text.role }}</div>
+                  <p>{{ text.introduction }}</p>
                 </div>
                 <div class="hero-art">
                   <div class="person"></div>
                   <div class="monitor">
                     <div class="screen">
-                      <span>const</span> developer = &#123;<br>
-                      &nbsp;&nbsp;name: <b>"Joao"</b>;<br>
-                      &nbsp;&nbsp;goal: <b>"build"</b>;<br>
+                      <span>const</span> {{ text.developer }} = &#123;<br>
+                      &nbsp;&nbsp;{{ text.name }}: <b>"Joao"</b>;<br>
+                      &nbsp;&nbsp;{{ text.goal }}: <b>"{{ text.create }}"</b>;<br>
                       &#125;
                     </div>
                   </div>
@@ -85,20 +97,20 @@
 
               <div class="comic-row">
                 <article class="card">
-                  <h2><span>sobre mi</span></h2>
-                  <p>Soy Joao, desarrollador apsionado por la programacion y el diseno</p>
+                  <h2><span>{{ text.aboutTitle }}</span></h2>
+                  <p>{{ text.about }}</p>
                   <div class="skills">
-                    <span class="tag">Creatividad</span>
-                    <span class="tag">Codigo</span>
+                    <span class="tag">{{ text.creativity }}</span>
+                    <span class="tag">{{ text.code }}</span>
                     <span class="tag">UI/UX</span>
                   </div>
                 </article>
                 <article class="card">
-                  <h2><span>Mi stack</span></h2>
+                  <h2><span>{{ text.technologies }}</span></h2>
                   <div class="skills">
                     <span class="tag">HTML</span>
                     <span class="tag">CSS</span>
-                    <span class="tag">Typescript</span>
+                    <span class="tag">JavaScript</span>
                     <span class="tag">Angular</span>
                     <span class="tag">Node.js</span>
                     <span class="tag">Firebase</span>
@@ -110,24 +122,24 @@
             @case ('projects') {
               <section class="projects">
                 <div class="card">
-                  <h2><span>Proyectos</span></h2>
+                  <h2><span>{{ text.projectsTitle }}</span></h2>
                   <div class="project-grid">
                     <article class="project">
                       <span class="project-number">01</span>
-                      <h3>App de tareas</h3>
-                      <p>Gestion de tareas con autenticacion y datos en tiempo real.</p>
+                      <h3>{{ text.taskApp }}</h3>
+                      <p>{{ text.taskDescription }}</p>
                       <span class="tag">Firebase</span>
                     </article>
                     <article class="project">
                       <span class="project-number">02</span>
-                      <h3>Sitio para negocio</h3>
-                      <p>Gestion de tareas con autenticacion y datos en tiempo real.</p>
+                      <h3>{{ text.businessSite }}</h3>
+                      <p>{{ text.businessDescription }}</p>
                       <span class="tag">HTML/CSS/JS</span>
                     </article>
                     <article class="project">
                       <span class="project-number">03</span>
-                      <h3>Sistema de inventario</h3>
-                      <p>Panel para controlar productos, exitencias y ventas.</p>
+                      <h3>{{ text.inventory }}</h3>
+                      <p>{{ text.inventoryDescription }}</p>
                       <span class="tag">PHP + SQL</span>
                     </article>
                   </div>
@@ -138,16 +150,16 @@
             @case ('contact') {
               <section class="projects">
                 <div class="contact">
-                  <strong>HABLEMOS!</strong>
-                  <a href="joao.29.507@gmail.com"> Email</a>
+                  <strong>{{ text.contactTitle }}</strong>
+                  <a href="mailto:joao.29.507@gmail.com">{{ text.email }}</a>
                   <a href="https://github.com/joao29507">GitHub</a>
-                  <a href="https://www.linkedin.com/feed/">linkedin</a>
+                  <a href="https://www.linkedin.com/feed/">LinkedIn</a>
                 </div>
               </section>
             }
 
             @default {
-              <div class="empty">Abre un archivo desde el explorer</div>
+              <div class="empty">{{ text.empty }}</div>
             }
           }
         </div>
@@ -155,13 +167,13 @@
     </section>
 
     <footer class="statusbar">
-      <span>main &nbsp; 0 errores</span>
-      <span>Ln 1, Col 1 &nbsp; UTF-8 &nbsp; JADA</span>
+      <span>{{ text.branch }} &nbsp; {{ text.errors }}</span>
+      <span>{{ text.line }} 1, {{ text.column }} 1 &nbsp; UTF-8 &nbsp; JADA</span>
     </footer>
   </main>
 
 @if (isLoading()) {
-  <div class="loader-screen" role="status" aria-label="Cargando portfolio">
+  <div class="loader-screen" role="status" [attr.aria-label]="text.loading">
     <div class="loader-ring" aria-hidden="true"></div>
     <div class="loader-text">jada</div>
   </div>

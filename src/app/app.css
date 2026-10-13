@@ -25,6 +25,24 @@
 .traffic span:nth-child(2) { background: #ffbd2e; }
 .traffic span:nth-child(3) { background: #28c840; }
 .title { font-weight: 800; letter-spacing: .5px; font-size: 18px; }
+.language-toggle,
+.cv-download {
+  padding: 6px 12px;
+  border: 2px solid var(--cyan);
+  background: transparent;
+  color: #fff;
+  font: 700 13px "Trebuchet MS", Arial, sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+}
+.language-toggle { margin-left: auto; }
+.language-toggle:hover,
+.language-toggle:focus-visible,
+.cv-download:hover,
+.cv-download:focus-visible {
+  background: var(--cyan);
+  color: var(--title);
+}
 
 /* Layout */
 .workspace {
